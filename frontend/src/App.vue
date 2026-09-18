@@ -1,4 +1,12 @@
 <script setup>
+import { ref } from 'vue';
+import StopInputForm from './components/StopInputForm.vue';
+
+const submittedStops = ref([]);
+
+function handleSubmit(stops) {
+  submittedStops.value = stops;
+}
 </script>
 
 <template>
@@ -11,22 +19,7 @@
     </header>
 
     <main class="app-shell__main container">
-      <section class="tw-card tw-card--elevated">
-        <header class="tw-card__header">
-          <h2 class="tw-card__title">Plan a route</h2>
-          <p class="tw-card__subtitle">Add your delivery stops to get the most efficient order.</p>
-        </header>
-        <div class="tw-card__body">
-          <div class="tw-field">
-            <input id="demo-stop" class="tw-field__input" type="text" placeholder=" " />
-            <label class="tw-field__label" for="demo-stop">Delivery address</label>
-          </div>
-        </div>
-        <footer class="tw-card__actions">
-          <button type="button" class="tw-btn tw-btn--text">Clear</button>
-          <button type="button" class="tw-btn tw-btn--primary">Optimize route</button>
-        </footer>
-      </section>
+      <StopInputForm @submit="handleSubmit" />
     </main>
   </div>
 </template>

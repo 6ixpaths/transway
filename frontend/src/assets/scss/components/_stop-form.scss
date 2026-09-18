@@ -1,0 +1,187 @@
+.stop-form {
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    margin: .25rem 0 0;
+    color: $md-on-surface-variant;
+    font-size: .875rem;
+  }
+
+  &__counter {
+    flex-shrink: 0;
+    padding: .25rem .75rem;
+    border-radius: $border-radius-pill;
+    background-color: $md-surface-variant;
+    color: $md-on-surface-variant;
+    font-size: .75rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  &__list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: .75rem;
+  }
+
+  &__badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-top: .75rem;
+    border-radius: 50%;
+    background-color: $md-primary-container;
+    color: $md-on-primary-container;
+    font-size: .875rem;
+    font-weight: 500;
+    @include md-transition(background-color, color);
+
+    &--origin {
+      background-color: $md-primary;
+      color: $md-on-primary;
+    }
+
+    &--destination {
+      background-color: $md-on-primary-container;
+      color: $md-on-primary;
+    }
+  }
+
+  &__field {
+    flex: 1 1 14rem;
+    min-width: 0;
+
+    .tw-field__label {
+      max-width: calc(100% - 1.75rem);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__row-actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: .25rem;
+    margin-top: .5rem;
+    margin-left: auto;
+  }
+
+  &__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    color: $md-on-surface-variant;
+    cursor: pointer;
+    @include md-transition(background-color, color);
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      background-color: rgba($md-primary, .08);
+      color: $md-primary-dark;
+    }
+
+    &:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+    }
+
+    &--danger {
+      &:hover:not(:disabled),
+      &:focus-visible {
+        background-color: rgba($md-error, .08);
+        color: $md-error;
+      }
+    }
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+  }
+
+  &__add-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: .75rem;
+    color: $md-on-surface-variant;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    padding-top: 1rem;
+    border-top: 1px solid $md-outline;
+  }
+
+  &__spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba($md-on-primary, .4);
+    border-top-color: $md-on-primary;
+    border-radius: 50%;
+    animation: stop-form-spin .8s linear infinite;
+  }
+
+  // TransitionGroup hooks for row add / remove / reorder
+  &__row-enter-active,
+  &__row-leave-active {
+    transition: opacity $md-duration-medium $md-motion-standard,
+      transform $md-duration-medium $md-motion-standard;
+  }
+
+  &__row-enter-from,
+  &__row-leave-to {
+    opacity: 0;
+    transform: translateY(-.5rem);
+  }
+
+  &__row-move {
+    transition: transform $md-duration-medium $md-motion-standard;
+  }
+}
+
+@keyframes stop-form-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
