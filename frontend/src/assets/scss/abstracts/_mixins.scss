@@ -1,0 +1,19 @@
+@mixin md-elevation($level: 1) {
+  @if $level == 0 { box-shadow: $md-elevation-0; }
+  @else if $level == 1 { box-shadow: $md-elevation-1; }
+  @else if $level == 2 { box-shadow: $md-elevation-2; }
+  @else if $level == 3 { box-shadow: $md-elevation-3; }
+  @else { box-shadow: $md-elevation-4; }
+}
+
+@mixin md-transition($properties...) {
+  transition-property: $properties;
+  transition-duration: $md-duration-short;
+  transition-timing-function: $md-motion-standard;
+}
+
+@mixin md-surface {
+  background-color: $md-surface;
+  color: $md-on-surface;
+  border-radius: $border-radius;
+}

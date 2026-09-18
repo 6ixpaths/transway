@@ -1,0 +1,76 @@
+.tw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 2.5rem;
+  padding: 0 1.5rem;
+  font: inherit;
+  font-weight: 500;
+  letter-spacing: .02em;
+  border: 1px solid transparent;
+  border-radius: $border-radius-pill;
+  cursor: pointer;
+  @include md-transition(background-color, box-shadow, color, border-color);
+
+  &:disabled {
+    opacity: .38;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  &--primary {
+    background-color: $md-primary;
+    color: $md-on-primary;
+    @include md-elevation(1);
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      background-color: $md-primary-dark;
+      @include md-elevation(2);
+    }
+  }
+
+  &--outlined {
+    background-color: transparent;
+    color: $md-primary-dark;
+    border-color: $md-outline;
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      background-color: rgba($md-primary, .08);
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+    color: $md-primary-dark;
+    padding: 0 .75rem;
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      background-color: rgba($md-primary, .08);
+    }
+  }
+
+  &--danger {
+    background-color: transparent;
+    color: $md-error;
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      background-color: rgba($md-error, .08);
+    }
+  }
+
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+
+  &__icon {
+    display: inline-flex;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}

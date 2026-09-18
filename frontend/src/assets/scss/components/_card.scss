@@ -1,0 +1,46 @@
+.tw-card {
+  @include md-surface;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  &--elevated {
+    @include md-elevation(1);
+  }
+
+  &--outlined {
+    border: 1px solid $md-outline;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: $md-on-surface-variant;
+    font-size: .875rem;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    padding-top: .5rem;
+  }
+}

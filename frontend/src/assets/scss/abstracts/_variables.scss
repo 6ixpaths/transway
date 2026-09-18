@@ -1,0 +1,78 @@
+// ---------------------------------------------------------------------------
+// Material color roles - brand hue is Teal 400 (#26A69A)
+// ---------------------------------------------------------------------------
+$md-primary: #26a69a;                 // fills: app bar, primary buttons, focus borders
+$md-primary-light: #80cbc4;           // subtle highlights on primary surfaces
+$md-primary-dark: #00796b;            // hover/pressed fills and AA-safe text on light surfaces
+$md-primary-container: #b2dfdb;       // tinted containers: chips, selected rows, marker badges
+$md-on-primary: #ffffff;
+$md-on-primary-container: #00352f;
+
+$md-secondary: #ffb300;               // warm accent complementing teal
+$md-on-secondary: #212121;
+
+$md-background: #f4f8f7;
+$md-surface: #ffffff;
+$md-surface-variant: #e0f2f1;
+$md-on-surface: #1e2a28;
+$md-on-surface-variant: #55706c;
+$md-outline: #c9d8d5;
+
+$md-error: #d32f2f;
+$md-on-error: #ffffff;
+
+// ---------------------------------------------------------------------------
+// Material elevation (box-shadow levels)
+// ---------------------------------------------------------------------------
+$md-elevation-0: none;
+$md-elevation-1: 0 1px 2px rgba(30, 42, 40, .3), 0 1px 3px 1px rgba(30, 42, 40, .15);
+$md-elevation-2: 0 1px 2px rgba(30, 42, 40, .3), 0 2px 6px 2px rgba(30, 42, 40, .15);
+$md-elevation-3: 0 1px 3px rgba(30, 42, 40, .3), 0 4px 8px 3px rgba(30, 42, 40, .15);
+$md-elevation-4: 0 2px 3px rgba(30, 42, 40, .3), 0 6px 10px 4px rgba(30, 42, 40, .15);
+
+$md-motion-standard: cubic-bezier(.4, 0, .2, 1);
+$md-duration-short: 150ms;
+$md-duration-medium: 250ms;
+
+// ---------------------------------------------------------------------------
+// Bootstrap variable overrides (must be declared before Bootstrap import)
+// ---------------------------------------------------------------------------
+$primary: $md-primary;
+$secondary: $md-secondary;
+$danger: $md-error;
+$light: $md-surface-variant;
+$dark: $md-on-surface;
+
+$body-bg: $md-background;
+$body-color: $md-on-surface;
+$body-secondary-color: $md-on-surface-variant;
+$link-color: $md-primary-dark;
+$link-hover-color: $md-on-primary-container;
+
+$font-family-sans-serif: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+$headings-font-weight: 500;
+
+$border-color: $md-outline;
+$border-radius: .75rem;
+$border-radius-sm: .5rem;
+$border-radius-lg: 1rem;
+$border-radius-pill: 2rem;
+
+$btn-border-radius: $border-radius-pill;
+$btn-border-radius-sm: $border-radius-pill;
+$btn-border-radius-lg: $border-radius-pill;
+$btn-padding-x: 1.5rem;
+$btn-font-weight: 500;
+$btn-focus-width: 0;
+
+$input-border-color: $md-outline;
+$input-focus-border-color: $md-primary;
+$input-focus-box-shadow: none;
+$input-border-radius: $border-radius-sm;
+$form-floating-height: 3.5rem;
+
+$card-border-width: 0;
+$card-border-radius: $border-radius;
+$card-bg: $md-surface;
+
+$enable-shadows: false;

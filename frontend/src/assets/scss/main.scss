@@ -1,0 +1,17 @@
+// Abstracts (no CSS output) - must precede Bootstrap so overrides take effect
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+// Framework
+@import "bootstrap/scss/bootstrap";
+
+// Material overrides applied on top of Bootstrap structure
+@import "base/material";
+
+// Layout blocks
+@import "layout/app-shell";
+
+// Component blocks (BEM)
+@import "components/card";
+@import "components/form";
+@import "components/button";

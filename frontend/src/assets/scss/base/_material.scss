@@ -1,0 +1,41 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.btn {
+  letter-spacing: .02em;
+  @include md-transition(background-color, box-shadow, color);
+}
+
+// Teal 400 is ~3:1 against white, so Bootstrap's contrast check would pick dark
+// text; pin the brand's white-on-teal treatment explicitly.
+.btn-primary {
+  --#{$prefix}btn-color: #{$md-on-primary};
+  --#{$prefix}btn-hover-color: #{$md-on-primary};
+  --#{$prefix}btn-hover-bg: #{$md-primary-dark};
+  --#{$prefix}btn-hover-border-color: #{$md-primary-dark};
+  --#{$prefix}btn-active-color: #{$md-on-primary};
+  --#{$prefix}btn-active-bg: #{$md-primary-dark};
+  --#{$prefix}btn-active-border-color: #{$md-primary-dark};
+  --#{$prefix}btn-disabled-color: #{$md-on-primary};
+  @include md-elevation(1);
+
+  &:hover,
+  &:focus-visible {
+    @include md-elevation(2);
+  }
+}
+
+.form-control {
+  border-width: 1px;
+
+  &:focus {
+    border-width: 2px;
+    padding: calc(#{$input-padding-y} - 1px) calc(#{$input-padding-x} - 1px);
+  }
+}
+
+.card {
+  @include md-elevation(1);
+}
