@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from 'vue';
+import RouteSummary from './components/RouteSummary.vue';
 import StopInputForm from './components/StopInputForm.vue';
 
 const submittedStops = ref([]);
+const route = ref(null);
+const loading = ref(false);
 
 function handleSubmit(stops) {
   submittedStops.value = stops;
@@ -19,7 +22,14 @@ function handleSubmit(stops) {
     </header>
 
     <main class="app-shell__main container">
-      <StopInputForm @submit="handleSubmit" />
+      <div class="row g-4">
+        <div class="col-lg-6 col-xl-5">
+          <StopInputForm :loading="loading" @submit="handleSubmit" />
+        </div>
+        <div class="col-lg-6 col-xl-7">
+          <RouteSummary :route="route" :loading="loading" />
+        </div>
+      </div>
     </main>
   </div>
 </template>
