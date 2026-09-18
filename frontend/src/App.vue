@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import OptimizedMap from './components/OptimizedMap.vue';
 import RouteSummary from './components/RouteSummary.vue';
 import StopInputForm from './components/StopInputForm.vue';
 
@@ -27,7 +28,10 @@ function handleSubmit(stops) {
           <StopInputForm :loading="loading" @submit="handleSubmit" />
         </div>
         <div class="col-lg-6 col-xl-7">
-          <RouteSummary :route="route" :loading="loading" />
+          <div class="app-shell__stack">
+            <OptimizedMap :route="route" :loading="loading" />
+            <RouteSummary :route="route" :loading="loading" />
+          </div>
         </div>
       </div>
     </main>

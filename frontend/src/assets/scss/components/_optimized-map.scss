@@ -1,0 +1,130 @@
+.optimized-map {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: $md-on-surface-variant;
+    font-size: .875rem;
+  }
+
+  &__frame {
+    position: relative;
+    min-height: 20rem;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: $border-radius;
+    background-color: $md-surface-variant;
+  }
+
+  &__canvas {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: 1.5rem;
+    background-color: $md-surface-variant;
+    text-align: center;
+
+    &--overlay {
+      background-color: rgba($md-surface, .72);
+      backdrop-filter: blur(2px);
+    }
+
+    &--error {
+      background-color: $md-surface;
+
+      .optimized-map__state-icon {
+        fill: $md-error;
+      }
+    }
+  }
+
+  &__state-icon {
+    width: 3rem;
+    height: 3rem;
+    fill: $md-primary-light;
+  }
+
+  &__state-title {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  &__state-text {
+    max-width: 24rem;
+    margin: 0;
+    color: $md-on-surface-variant;
+    font-size: .875rem;
+
+    code {
+      color: $md-primary-dark;
+    }
+  }
+
+  &__spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid rgba($md-primary, .25);
+    border-top-color: $md-primary;
+    border-radius: 50%;
+    animation: optimized-map-spin .8s linear infinite;
+  }
+
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $md-on-surface-variant;
+    font-size: .8125rem;
+  }
+
+  &__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+  }
+
+  &__swatch {
+    width: .875rem;
+    height: .875rem;
+    border: 2px solid $md-primary-dark;
+    border-radius: 50%;
+    background-color: $md-primary-container;
+
+    &--origin {
+      background-color: $md-primary;
+    }
+
+    &--destination {
+      border-color: $md-on-primary-container;
+      background-color: $md-on-primary-container;
+    }
+  }
+}
+
+@keyframes optimized-map-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

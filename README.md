@@ -114,6 +114,8 @@ transway/
 3. Create a `.env` file in the `frontend/` directory (if needed):
    ```env
    API_BASE_URL=http://localhost:8000
+   GOOGLE_MAPS_API_KEY=your-browser-maps-js-api-key
+   GOOGLE_MAPS_MAP_ID=
    ```
 
 4. Start the development server:

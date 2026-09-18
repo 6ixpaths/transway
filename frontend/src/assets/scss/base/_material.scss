@@ -1,3 +1,11 @@
+:root {
+  --tw-primary: #{$md-primary};
+  --tw-primary-dark: #{$md-primary-dark};
+  --tw-primary-container: #{$md-primary-container};
+  --tw-on-primary: #{$md-on-primary};
+  --tw-on-primary-container: #{$md-on-primary-container};
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

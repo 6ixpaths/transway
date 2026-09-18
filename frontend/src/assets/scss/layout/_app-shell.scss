@@ -35,3 +35,9 @@
     padding-bottom: 2rem;
   }
 }
+
+.app-shell__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
