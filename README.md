@@ -75,29 +75,41 @@ transway/
    pip install -r requirements.txt
    ```
 
-4. Create a `.env` file in the `backend/` directory:
+4. Create a `.env` file in the `backend/` directory with the variables listed below:
    ```env
    DEBUG=True
-   SECRET_KEY=your-secret-key-here
+   SECRET_KEY=your-super-secret-key-change-in-production
    GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+   ALLOWED_HOSTS=localhost,127.0.0.1
+   CORS_ALLOWED_ORIGINS=http://localhost:8080,http://127.0.0.1:8080
    ```
 
-5. Run migrations:
+5. Run Django system checks:
+   ```bash
+   python manage.py check
+   ```
+
+6. Run migrations:
    ```bash
    python manage.py migrate
    ```
 
-6. Start the development server:
+7. Start the development server:
    ```bash
    python manage.py runserver
    ```
 
    The backend API will be available at `http://localhost:8000`
 
-7. Run the test suite:
+8. Run the test suite (requires `pytest` and `pytest-django`):
    ```bash
    pytest
    ```
+
+   All tests should pass. The test suite includes:
+   - Google Maps service integration tests
+   - Route optimization endpoint tests
+   - Request/response serializer validation tests
 
 ### Frontend Setup
 
@@ -111,12 +123,14 @@ transway/
    npm install
    ```
 
-3. Create a `.env` file in the `frontend/` directory (if needed):
+3. Create a `.env` file in the `frontend/` directory:
    ```env
    API_BASE_URL=http://localhost:8000
-   GOOGLE_MAPS_API_KEY=your-browser-maps-js-api-key
-   GOOGLE_MAPS_MAP_ID=
+   GOOGLE_MAPS_API_KEY=your-browser-restricted-maps-js-api-key
+   GOOGLE_MAPS_MAP_ID=your-optional-map-id
    ```
+
+   **Note:** The `GOOGLE_MAPS_API_KEY` for the frontend should be a browser-restricted API key (different from the backend key) with the **Maps JavaScript API** enabled.
 
 4. Start the development server:
    ```bash
@@ -124,6 +138,40 @@ transway/
    ```
 
    The frontend will be available at `http://localhost:8080` (or the port shown in terminal)
+
+### Environment Variables Reference
+
+#### Backend (`backend/.env`)
+| Variable | Purpose | Example |
+|----------|---------|---------|
+| `DEBUG` | Django debug mode (set to `False` in production) | `True` |
+| `SECRET_KEY` | Django secret key for session/CSRF protection | `your-super-secret-key-change-in-production` |
+| `GOOGLE_MAPS_API_KEY` | Server-side API key for Route Optimization & Directions APIs | `AIza...` |
+| `ALLOWED_HOSTS` | Comma-separated list of allowed hostnames | `localhost,127.0.0.1,yourdomain.com` |
+| `CORS_ALLOWED_ORIGINS` | Comma-separated list of allowed frontend origins for CORS | `http://localhost:8080,https://yourdomain.com` |
+
+#### Frontend (`frontend/.env`)
+| Variable | Purpose | Example |
+|----------|---------|---------|
+| `API_BASE_URL` | Backend API server URL | `http://localhost:8000` |
+| `GOOGLE_MAPS_API_KEY` | Browser-restricted API key for Maps JS SDK | `AIza...` |
+| `GOOGLE_MAPS_MAP_ID` | Optional Map ID for advanced styling (can be left empty) | `map-id-123` |
+
+### Verifying the Setup
+
+1. **Backend Running:**
+   ```bash
+   curl http://localhost:8000/admin/login/
+   ```
+   Should return a 200 response.
+
+2. **Frontend Running:**
+   Open `http://localhost:8080` in your browser. You should see the Transway app with a Stop Input Form on the left and a Map placeholder on the right.
+
+3. **API Connectivity:**
+   - Enter 2–27 delivery addresses in the form
+   - Click "Optimize Route"
+   - If your `GOOGLE_MAPS_API_KEY` is configured, the optimized route will appear on the map with metrics
 
 ## 📖 Usage
 
