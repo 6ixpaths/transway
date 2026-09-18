@@ -94,6 +94,11 @@ transway/
 
    The backend API will be available at `http://localhost:8000`
 
+7. Run the test suite:
+   ```bash
+   pytest
+   ```
+
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
@@ -108,7 +113,7 @@ transway/
 
 3. Create a `.env` file in the `frontend/` directory (if needed):
    ```env
-   VUE_APP_API_URL=http://localhost:8000
+   API_BASE_URL=http://localhost:8000
    ```
 
 4. Start the development server:
