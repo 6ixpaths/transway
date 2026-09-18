@@ -125,34 +125,41 @@ def test_rejects_non_json_body(client, url, optimizer):
 
 
 @pytest.mark.parametrize(
-    ("error", "expected_status", "expected_code", "expected_detail"),
+    ("error", "expected_status", "expected_body"),
     [
         pytest.param(
-            RouteNotFoundError("Could not locate address: 10 Elm St", "NOT_FOUND"),
-            422, "route_not_found", "Could not locate address: 10 Elm St",
-            id="route-not-found",
+            RouteNotFoundError("Could not locate address: 10 Elm St", "NOT_FOUND", address="10 Elm St"),
+            422,
+            {"detail": "Could not locate address: 10 Elm St", "code": "route_not_found", "address": "10 Elm St"},
+            id="address-not-found",
+        ),
+        pytest.param(
+            RouteNotFoundError("No drivable route could be found between the provided stops", "ZERO_RESULTS"),
+            422,
+            {"detail": "No drivable route could be found between the provided stops", "code": "route_not_found"},
+            id="no-route",
         ),
         pytest.param(
             GoogleMapsConfigurationError("GOOGLE_MAPS_API_KEY is not configured"),
-            503, "not_configured", "Route optimization is not configured on the server",
+            503,
+            {"detail": "Route optimization is not configured on the server", "code": "not_configured"},
             id="not-configured",
         ),
         pytest.param(
             GoogleMapsError("The provided API key is invalid.", "REQUEST_DENIED"),
-            502, "upstream_error", "The provided API key is invalid.",
+            502,
+            {"detail": "The provided API key is invalid.", "code": "upstream_error"},
             id="upstream-error",
         ),
     ],
 )
-def test_maps_service_errors_to_http_responses(
-    client, url, optimizer, error, expected_status, expected_code, expected_detail
-):
+def test_maps_service_errors_to_http_responses(client, url, optimizer, error, expected_status, expected_body):
     optimizer.error = error
 
     response = client.post(url, {"stops": STOPS}, format="json")
 
     assert response.status_code == expected_status
-    assert response.json() == {"detail": expected_detail, "code": expected_code}
+    assert response.json() == expected_body
 
 
 def test_get_is_not_allowed(client, url, optimizer):

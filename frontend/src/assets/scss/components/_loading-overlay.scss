@@ -1,0 +1,50 @@
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: $zindex-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($md-background, .6);
+  backdrop-filter: blur(2px);
+
+  &__panel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: $border-radius-pill;
+    background-color: $md-surface;
+    color: $md-on-surface;
+    @include md-elevation(3);
+  }
+
+  &__spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid rgba($md-primary, .25);
+    border-top-color: $md-primary;
+    border-radius: 50%;
+    animation: loading-overlay-spin .8s linear infinite;
+  }
+
+  &__message {
+    font-weight: 500;
+  }
+
+  &-enter-active,
+  &-leave-active {
+    transition: opacity $md-duration-medium $md-motion-standard;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+@keyframes loading-overlay-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

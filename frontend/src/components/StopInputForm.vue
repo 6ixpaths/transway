@@ -48,6 +48,16 @@ function clearAll() {
   stops.value = blankStops();
 }
 
+function markInvalid(address, message) {
+  const stop = stops.value.find((candidate) => candidate.address.trim() === address);
+  if (!stop) return false;
+  stop.error = message;
+  nextTick(() => root.value?.querySelector(`#stop-${stop.id}`)?.focus());
+  return true;
+}
+
+defineExpose({ markInvalid });
+
 function submit() {
   let valid = true;
   for (const stop of stops.value) {
@@ -91,6 +101,7 @@ function submit() {
             class="tw-field__input"
             type="text"
             placeholder=" "
+            maxlength="255"
             autocomplete="street-address"
             :disabled="loading"
             :aria-invalid="Boolean(stop.error)"

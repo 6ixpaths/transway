@@ -19,7 +19,12 @@ class RouteOptimizeView(APIView):
         try:
             route = optimize_route(serializer.validated_data["stops"])
         except RouteNotFoundError as exc:
-            return _error(str(exc), "route_not_found", status.HTTP_422_UNPROCESSABLE_ENTITY)
+            return _error(
+                str(exc),
+                "route_not_found",
+                status.HTTP_422_UNPROCESSABLE_ENTITY,
+                **({"address": exc.address} if exc.address else {}),
+            )
         except GoogleMapsConfigurationError:
             return _error(
                 "Route optimization is not configured on the server",
@@ -32,5 +37,5 @@ class RouteOptimizeView(APIView):
         return Response(OptimizedRouteSerializer(route).data)
 
 
-def _error(detail, code, http_status):
-    return Response({"detail": detail, "code": code}, status=http_status)
+def _error(detail, code, http_status, **extra):
+    return Response({"detail": detail, "code": code, **extra}, status=http_status)

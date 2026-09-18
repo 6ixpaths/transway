@@ -1,0 +1,101 @@
+.snackbar {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: $zindex-toast;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: .875rem 1rem;
+  border-left: 4px solid transparent;
+  border-radius: $border-radius-sm;
+  background-color: $md-on-surface;
+  color: $md-surface;
+  font-size: .9375rem;
+  @include md-elevation(3);
+
+  @include media-breakpoint-up(md) {
+    right: auto;
+    left: 50%;
+    min-width: 22rem;
+    transform: translateX(-50%);
+  }
+
+  &--error {
+    border-left-color: $md-error;
+  }
+
+  &--info {
+    border-left-color: $md-primary;
+  }
+
+  &__message {
+    flex: 1;
+  }
+
+  &__action {
+    flex-shrink: 0;
+    padding: .375rem .75rem;
+    border: 0;
+    border-radius: $border-radius-pill;
+    background-color: transparent;
+    color: $md-primary-light;
+    font: inherit;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    cursor: pointer;
+    @include md-transition(background-color);
+
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($md-primary-light, .16);
+    }
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    @include md-transition(background-color);
+
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($md-surface, .16);
+    }
+  }
+
+  &__icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    fill: currentColor;
+  }
+
+  &-enter-active,
+  &-leave-active {
+    transition: opacity $md-duration-medium $md-motion-standard,
+      transform $md-duration-medium $md-motion-standard;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(.75rem);
+
+    @include media-breakpoint-up(md) {
+      transform: translate(-50%, .75rem);
+    }
+  }
+}

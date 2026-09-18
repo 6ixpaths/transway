@@ -210,6 +210,7 @@ def test_not_found_reports_unresolved_address(directions):
 
     assert STOPS[2] in str(excinfo.value)
     assert excinfo.value.status == "NOT_FOUND"
+    assert excinfo.value.address == STOPS[2]
 
 
 def test_zero_results_raises_route_not_found(directions):

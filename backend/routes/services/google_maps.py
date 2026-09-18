@@ -32,6 +32,10 @@ class GoogleMapsConfigurationError(GoogleMapsError):
 class RouteNotFoundError(GoogleMapsError):
     """Raised when Google cannot geocode a stop or find a route between stops."""
 
+    def __init__(self, message, status=None, address=None):
+        super().__init__(message, status)
+        self.address = address
+
 
 @dataclass(frozen=True)
 class LatLng:
@@ -135,7 +139,7 @@ def _raise_for_status(status, payload, stops):
             if wp.get("geocoder_status") != "OK"
         ]
         if unresolved:
-            message = f"Could not locate address: {unresolved[0]}"
+            raise RouteNotFoundError(f"Could not locate address: {unresolved[0]}", status, address=unresolved[0])
         raise RouteNotFoundError(message, status)
 
     if status == "ZERO_RESULTS":
